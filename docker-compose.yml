@@ -1,0 +1,36 @@
+services:
+  ingress_reduct_1:
+    image: reduct/store:latest
+    env_file: ingress_settings.env
+    ports:
+      - "7081:8383"
+
+  ingress_reduct_2:
+    image: reduct/store:latest
+    env_file: ingress_settings.env
+    ports:
+      - "7082:8383"
+
+  egress_reduct_1:
+    image: reduct/store:latest
+    env_file: egress_settings.env
+    ports:
+      - "7083:8383"
+
+  egress_reduct_2:
+    image: reduct/store:latest
+    env_file: egress_settings.env
+    ports:
+      - "7084:8383"
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf    # pass customised configuration to NGINX
+    depends_on:
+      - ingress_reduct_1
+      - ingress_reduct_2
+      - egress_reduct_1
+      - egress_reduct_2
+    ports:
+      - "80:80"
