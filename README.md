@@ -1,6 +1,8 @@
 # nginx-resilient-setup
 
-An example of a resilient ReducStore setup with NGINX 
+An example of a resilient ReducStore setup with NGINX.
+
+Read more here: https://www.reduct.store/docs/next/guides/disaster-recovery#active-active-setup
 
 
 ## Running the example
